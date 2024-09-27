@@ -113,14 +113,16 @@
         <div id="career" class="container" style="padding-top: 200px; height: 650px">
           <h1>Career</h1>
           <p>
-            I am currently working as a Front-End Developer with a focus on building
-            responsive and interactive web applications. My career journey began
-            after completing my Bachelor of Engineering in Computer Science. I have
-            gained experience in HTML, CSS, JavaScript, and frameworks like Vue.js
-            and Bootstrap. Over the past few years, I have worked on a variety of
-            projects, developing user-friendly interfaces, implementing dynamic
-            features, and collaborating with teams to build efficient and scalable
-            web solutions.
+            I am currently pursuing my Bachelor of Engineering (B.E.) in Computer
+          Science and Engineering, and I am in my 7th semester. Alongside my
+          studies, I am gaining practical experience through my internship at
+          Ontrack Company, where I am focused on front-end development. This
+          opportunity is allowing me to apply theoretical knowledge from my
+          coursework to real-world projects, honing my skills in technologies
+          like HTML, CSS, JavaScript, and Vue.js. My academic background
+          combined with my internship experience is preparing me for a
+          successful career in web development and user interface design.
+
           </p>
         </div>
       </section>
@@ -130,28 +132,27 @@
           <h1>Hobby</h1>
           <div class="row" style="margin-top: 20px">
             <div class="col-md-4">
-              <h3>Reading</h3>
-              <p>
-                I enjoy reading a wide range of books, including fiction,
-                non-fiction, and technical literature. It helps me relax and expand
-                my knowledge.
-              </p>
-            </div>
-  
-            <div class="col-md-4">
               <h3>Dancing</h3>
               <p>
-                Dancing is one of my favorite hobbies, allowing me to express myself
-                through movement and rhythm.
+                Dancing is one of my favorite hobbies, allowing me to express myself through movement and rhythm. 
+              It helps me relieve stress, boosts my confidence, and connects me with others who share the same passion.
               </p>
             </div>
   
             <div class="col-md-4">
-              <h3>Photography</h3>
+              <h3>Watching movies and series</h3>
               <p>
-                I love capturing moments through photography, whether it's nature,
-                architecture, or candid shots. It’s a way to express creativity and
-                document life.
+                Watching movies and series is one of my favorite hobbies. It
+              allows me to immerse myself in diverse stories and cultures,
+              providing a great way to relax and unwind. 
+              </p>
+            </div>
+  
+            <div class="col-md-4">
+              <h3>Modeling and fashion</h3>
+              <p>
+                Modeling and exploring fashion trends is one of my favorite hobbies.
+              I enjoy experimenting with different styles, makeup looks, and photography.
               </p>
             </div>
           </div>
@@ -162,45 +163,54 @@
         <div id="thanks" class="container" style="padding-top: 200px; height: 650px">
           <h1>Thanks</h1>
           <p>
-            I would like to express my heartfelt thanks to everyone who has
-            supported me throughout my journey. Your encouragement and guidance have
-            been invaluable, and I am truly grateful for your presence in my life. A
-            special thanks to my family and friends for believing in me and
-            motivating me to pursue my dreams.
+            I would like to extend my heartfelt thanks to my technical manager,
+          for providing invaluable guidance and support throughout my internship
+          at Ontrack Company. Your mentorship has greatly enhanced my
+          understanding of front-end development and web technologies. I am also
+          incredibly grateful to my fellow interns, for their constant
+          encouragement, collaboration, and for sharing their expertise with me.
+          Together, you have made this experience both enriching and enjoyable,
+          helping me grow personally and professionally.A special thanks to my
+          family and friends for believing in me and motivating me to pursue my
+          dreams.
+
           </p>
   
           <div class="row text-center">
             <div class="col-md-3">
               <img
-                src="https://tse2.mm.bing.net/th?id=OIP.nowHE9NLbnIok1b4Qu5apQHaHg&pid=Api&P=0&h=180"
-                alt="Thank You"
-                style="max-width: 100%; height: auto"
-              />
-              <p>Co-founder of Microsoft</p>
+              src="https://media.licdn.com/dms/image/v2/D5603AQGyb2v3K0sLTw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705995220752?e=1732752000&v=beta&t=sPTMRxMFiNsdVqrm94iW-Cl4KB4SxptMh5D6ioF-C3Q"
+              alt="Thank You"
+              style="max-width: 100%; height: auto"
+            />
+            <p>Technical manager</p>
+
             </div>
             <div class="col-md-3">
               <img
-                src="http://www.thefamouspeople.com/profiles/images/elon-musk-1.jpg"
-                alt="Thank You"
-                style="max-width: 80%; height: auto"
-              />
-              <p>Elon Musk is the CEO and lead designer of SpaceX</p>
+              src="https://media.licdn.com/dms/image/v2/D5635AQFFere1ePtQQA/profile-framedphoto-shrink_800_800/profile-framedphoto-shrink_800_800/0/1690268053352?e=1728021600&v=beta&t=u4-jN_YUkoMXb-WQDF265LDyVL2-Qro5nyoWIe7tAbU"
+              alt="Thank You"
+              style="max-width: 100%; height: auto"
+            />
+            <p>Guide</p>
+
             </div>
             <div class="col-md-3">
               <img
-                src="https://wallpapers.com/images/hd/virat-kohli-in-sunglasses-yc8dfpcjssp3s4se.jpg"
-                alt="Thank You"
-                style="max-width: 100%; height: auto"
-              />
-              <p>Cricketer</p>
+              src="https://media.licdn.com/dms/image/v2/C5603AQG89Rwlb6MiCQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1658983866670?e=1732752000&v=beta&t=BWtMLZw-wWGa7nN7bNvHshQq-896nmNJy-y-JO_jqg0"
+              alt="Thank You"
+              style="max-width: 100%; height: auto"
+            />
+            <p>Frontend Developer</p>
+
             </div>
             <div class="col-md-3">
               <img
-                src="https://tse4.mm.bing.net/th?id=OIP.kY5OGGK5C5KYeAqG3oW8AAHaHa&pid=Api&P=0&h=180"
-                alt="Thank You"
-                style="max-width: 100%; height: auto"
-              />
-              <p>Sundar Pichai is the CEO of Google</p>
+              src="https://media.licdn.com/dms/image/v2/D4E03AQFX_8WluBwkGQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1712950005824?e=1732752000&v=beta&t=pfc2PlsJMAniV_bV-Gml6aNKeHcW9Fmnnyf0a9B_QMA"
+              alt="Thank You"
+              style="max-width: 100%; height: auto"
+            />
+            <p>Backend developer</p>
             </div>
           </div>
         </div>
