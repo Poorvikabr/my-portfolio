@@ -55,7 +55,7 @@
         <p>Your cart is empty.</p>
       </div>
     </b-modal>
-    <b-button to="">Next</b-button>
+
   </div>
 </template>
 
