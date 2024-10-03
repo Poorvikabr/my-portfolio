@@ -1,115 +1,127 @@
 <template>
-    <div>
-      <!-- Navbar with Cart Icon -->
-      <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand href="#">My Store</b-navbar-brand>
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item @click="showCartModal">
-            <b-icon icon="cart" variant="warning">My Cart</b-icon>
-          </b-nav-item>
-        </b-navbar-nav>
-      </b-navbar>
-  
-      <!-- Fruits Shopping List -->
-      <div class="container mt-5">
-        <h2>Fruits Shopping List</h2>
-        <b-row>
-          <b-col
-            v-for="(fruit, index) in fruitsList"
-            :key="index"
-            cols="12"
-            md="6"
-            lg="4"
-            class="mb-4"
+  <div>
+    <!-- Navbar with Cart Icon -->
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar-brand href="#">My Store</b-navbar-brand>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item @click="showCartModal">
+          <b-icon icon="cart" variant="warning">My Cart</b-icon>
+        </b-nav-item>
+      </b-navbar-nav>
+    </b-navbar>
+
+    <!-- Fruits Shopping List -->
+    <div class="container mt-5">
+      <h2>Fruits Shopping List</h2>
+      <b-row>
+        <b-col
+          v-for="(fruit, index) in fruitsList"
+          :key="index"
+          cols="12"
+          md="6"
+          lg="4"
+          class="mb-4"
+        >
+          <b-card
+            :title="fruit.name"
+            class="text-center"
+            img-top
+            :img-src="fruit.image"
+            img-alt="fruit.name"
+            img-height="200"
           >
-            <b-card
-              :title="fruit.name"
-              class="text-center"
-              img-top
-              :img-src="fruit.image"
-              img-alt="fruit.name"
-              img-height="200"
-            >
-              <b-card-text>
-                {{ fruit.description }}
-              </b-card-text>
-              <b-button variant="primary" @click="addToCart(fruit)">Add to Cart</b-button>
-            </b-card>
-          </b-col>
-        </b-row>
-      </div>
-  
-      <!-- Cart Modal -->
-      <b-modal v-model="cartModal" title="Your Cart" hide-footer>
-        <div v-if="cartItems.length > 0">
-          <ul>
-            <li v-for="(item, index) in cartItems" :key="index">
-              {{ item.name }} - ₹{{ item.price }}
-            </li>
-          </ul>
-        </div>
-        <div v-else>
-          <p>Your cart is empty.</p>
-        </div>
-      </b-modal>
+            <b-card-text>
+              {{ fruit.description }}
+              <br />
+              <strong>Price: ₹{{ fruit.price }} per kg</strong>
+            </b-card-text>
+            <b-button variant="primary" @click="addToCart(fruit)">Add to Cart</b-button>
+          </b-card>
+        </b-col>
+      </b-row>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ShoppingList',
-    data() {
-      return {
-        cartModal: false, // Controls modal visibility
-        cartItems: [], // Holds added items in the cart
-        fruitsList: [
-          {
-            name: "Apple",
-            description: "A sweet, crunchy fruit that is good for health.",
-            image: "https://via.placeholder.com/200x150?text=Apple",
-            price: 1.99,
-          },
-          {
-            name: "Banana",
-            description: "A soft, sweet fruit rich in potassium.",
-            image: "https://via.placeholder.com/200x150?text=Banana",
-            price: 0.99,
-          },
-          {
-            name: "Orange",
-            description: "A citrus fruit that is juicy and rich in Vitamin C.",
-            image: "https://via.placeholder.com/200x150?text=Orange",
-            price: 2.49,
-          },
-          {
-            name: "Grapes",
-            description: "A small, juicy fruit available in different colors.",
-            image: "https://via.placeholder.com/200x150?text=Grapes",
-            price: 3.99,
-          },
-          {
-            name: "Mango",
-            description: "A tropical fruit that is sweet and juicy, often called the king of fruits.",
-            image: "https://via.placeholder.com/200x150?text=Mango",
-            price: 1.49,
-          },
-        ],
-      };
+
+    <!-- Cart Modal -->
+    <b-modal v-model="cartModal" title="Your Cart" hide-footer>
+      <div v-if="cartItems.length > 0">
+        <ul>
+          <li v-for="(item, index) in cartItems" :key="index">
+            {{ item.name }} - ₹{{ item.price }} per kg
+            <b-button variant="danger" size="sm" @click="removeFromCart(index)">Remove</b-button>
+          </li>
+        </ul>
+      </div>
+      <div v-else>
+        <p>Your cart is empty.</p>
+      </div>
+    </b-modal>
+    <b-button to="">Next</b-button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ShoppingList',
+  data() {
+    return {
+      cartModal: false, 
+      cartItems: [], 
+      fruitsList: [
+        {
+          name: "Apple",
+          description: "A sweet, crunchy fruit that is good for health.",
+          image: "https://www.mashed.com/img/gallery/popular-types-of-apples-and-what-theyre-used-for/l-intro-1634566536.jpg",
+          price: 300,
+        },
+        {
+          name: "Banana",
+          description: "A soft, sweet fruit rich in potassium.",
+          image: "https://www.popoptiq.com/wp-content/uploads/2019/01/4-28-1-1.jpg",
+          price: 80,
+        },
+        {
+          name: "Orange",
+          description: "A citrus fruit that is juicy and rich in Vitamin C.",
+          image: "https://insanelygoodrecipes.com/wp-content/uploads/2023/01/Fresh-Organic-Tangerine-Oranges-with-Leaves.jpg",
+          price: 250,
+        },
+        {
+          name: "Grapes",
+          description: "A small, juicy fruit available in different colors.",
+          image: "https://images6.alphacoders.com/368/368747.jpg",
+          price: 280,
+        },
+        {
+          name: "Mango",
+          description: "A tropical fruit that is sweet and juicy, often called the king of fruits.",
+          image: "https://www.tastingtable.com/img/gallery/how-to-tell-if-a-mango-has-gone-bad/l-intro-1654872594.jpg",
+          price: 350,
+        },
+        {
+          name: "Litchi",
+          description: "A tropical fruit that is sweet and juicy, often called the king of fruits.",
+          image: "https://static.toiimg.com/photo/msid-69913666/69913666.jpg?1369636",
+          price: 400,
+        },
+      ],
+    };
+  },
+  methods: {
+    addToCart(fruit) {
+      this.cartItems.push(fruit); 
     },
-    methods: {
-      addToCart(fruit) {
-        this.cartItems.push(fruit); // Add selected fruit to the cart
-      },
-      showCartModal() {
-        this.cartModal = true; // Show cart modal
-      },
+    showCartModal() {
+      this.cartModal = true; 
     },
-  };
-  </script>
-  
-  <style scoped>
-  .container {
-    max-width: 900px;
-  }
-  </style>
-  
+    removeFromCart(index) {
+      this.cartItems.splice(index, 1); 
+    },
+  },
+};
+</script>
+
+<style scoped>
+.container {
+  max-width: 900px;
+}
+</style>
