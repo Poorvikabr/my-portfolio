@@ -37,6 +37,10 @@
               <li class="nav-item">
                 <a href="#map" class="nav-link">Map</a>
               </li>
+            
+              <li class="nav-item">
+                <a href="Shopping" class="nav-link">Shopping</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -188,7 +192,7 @@
             </div>
             <div class="col-md-3">
               <img
-              src="https://media.licdn.com/dms/image/v2/D5635AQFFere1ePtQQA/profile-framedphoto-shrink_800_800/profile-framedphoto-shrink_800_800/0/1690268053352?e=1728021600&v=beta&t=u4-jN_YUkoMXb-WQDF265LDyVL2-Qro5nyoWIe7tAbU"
+              src="https://media.licdn.com/dms/image/v2/D5603AQGTA6zhKq8uSA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727696827510?e=1733356800&v=beta&t=gYFAq8dWGWIG1myeNGdGpcuvn91MkGCm7pMeJufaljA"
               alt="Thank You"
               style="max-width: 100%; height: auto"
             />
