@@ -55,6 +55,15 @@
                   >
                 </div>
               </div>
+              <div>
+                <label for="sb-inline">Qty.</label>
+                <b-form-spinbutton
+                  id="sb-inline"
+                  v-model="value"
+                  v-if="selectedItems"
+                  inline
+                ></b-form-spinbutton>
+              </div>
             </div>
           </b-card>
         </b-col>
@@ -242,6 +251,7 @@ export default {
 
     addToCart(fruit) {
       this.cartItems.push(fruit);
+      alert(`${fruit.name} added to the cart!`);
     },
     showCartModal() {
       this.cartModal = true;
@@ -252,6 +262,7 @@ export default {
     },
     removeFromCart(fruit) {
       this.cartItems.splice(this.cartItems.indexOf(fruit), 1);
+      alert(`${fruit.name} removed from the cart!`);
     },
   },
 };
