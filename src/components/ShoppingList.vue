@@ -31,26 +31,51 @@
             :img-src="fruit.image"
             img-alt="fruit.name"
             img-height="200"
-             @click="showCartModalDetails"
+            @click="showCartModalDetails"
           >
             <b-card-text>
               {{ fruit.description }}
               <br />
               <strong>Price: ₹{{ fruit.price }} per kg</strong>
             </b-card-text>
-            <b-button variant="primary" @click="addToCart(fruit)"
-              >Add to Cart</b-button
-            >
           </b-card>
         </b-col>
       </b-row>
     </div>
 
-    
-      <b-modal v-model="cartModalDetails"  id="modal-1" title="Details" >
-        <p class="my-4">Hello from modal!</p>
+    <div>
+      <b-modal
+        v-for="(fruit, index) in fruitsList"
+        :key="index"
+        cols="12"
+        md="6"
+        lg="4"
+        class="mb-4"
+        v-model="cartModalDetails"
+        hide-footer
+        title="Descripition"
+      >
+        <b-card
+          :title="fruit.name"
+          class="text-center"
+          img-top
+          :img-src="fruit.image"
+          img-alt="fruit.name"
+          img-height="200"
+          
+        >
+          <b-card-text>
+            {{ fruit.description }}
+            <br />
+            <strong>Price: ₹{{ fruit.price }} per kg</strong>
+          </b-card-text>
+        </b-card>
+        <b-img></b-img>
+        <b-button variant="primary" @click="addToCart(fruit)"
+          >Add to Cart</b-button
+        >
       </b-modal>
-    
+    </div>
 
     <!-- Cart Modal -->
     <b-modal v-model="cartModal" title="Your Cart" hide-footer>
@@ -80,6 +105,7 @@ export default {
       cartModal: false,
       cartModalDetails: false,
       cartItems: [],
+      selectedItems: [],
       fruitsList: [
         {
           name: "Apple",
