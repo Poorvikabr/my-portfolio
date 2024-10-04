@@ -53,16 +53,19 @@
                   <b-button v-else variant="primary" @click="addToCart(fruit)"
                     >Add to Cart</b-button
                   >
+                  <div v-if="checkIfAvailableOnCart(fruit)">
+                    <label for="sb-inline">Qty.</label>
+                    <b-form-spinbutton
+                      id="sb-inline"
+                      v-model="fruit.quantity"
+                      @input="updateCartQuantity(fruit)"
+                      inline
+                      min="1"
+                      max="100"
+                    ></b-form-spinbutton>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label for="sb-inline">Qty.</label>
-                <b-form-spinbutton
-                  id="sb-inline"
-                  v-model="value"
-                  v-if="selectedItems"
-                  inline
-                ></b-form-spinbutton>
+                <!-- Spin Button to select quantity if item is in cart -->
               </div>
             </div>
           </b-card>
@@ -70,61 +73,24 @@
       </b-row>
     </b-container>
 
-    <b-modal
-      v-model="cartModalDetails"
-      hide-footer
-      hide-header
-      scrollable
-      size="xl"
-    >
-      <b-card
-        v-if="currentSelectedFruit"
-        :title="currentSelectedFruit.name"
-        img-height="200"
-      >
-        <b-row>
-          <b-col cols="4">
-            <b-carousel
-              id="carousel-fade"
-              style="text-shadow: 0px 0px 2px #000"
-              fade
-              indicators
-            >
-              <b-carousel-slide
-                v-for="(image, index) in currentSelectedFruit.images"
-                :key="index"
-                caption="First Slide"
-                :img-src="image"
-              ></b-carousel-slide>
-            </b-carousel>
-          </b-col>
-          <b-col cols="8">
-            <b-card-text>
-              {{ currentSelectedFruit.description }}
-              <br />
-              <strong>Price: ₹{{ currentSelectedFruit.price }} per kg</strong>
-            </b-card-text>
-            <b-img></b-img>
-            <b-button variant="primary" @click="addToCart(fruit)"
-              >Add to Cart</b-button
-            >
-          </b-col>
-        </b-row>
-      </b-card>
-      <div class="my-4" v-else>
-        <div><strong>Please select a fruit first</strong></div>
-      </div>
-    </b-modal>
-
     <!-- Cart Modal -->
     <b-modal v-model="cartModal" title="Your Cart" hide-footer>
       <div v-if="cartItems.length > 0">
         <ul>
           <li v-for="(item, index) in cartItems" :key="index">
-            {{ item.name }} - ₹{{ item.price }} per kg
-            <b-button variant="danger" size="sm" @click="removeFromCart(index)"
+            {{ item.name }} - ₹{{ item.price }} per kg - Qty:
+            {{ item.quantity }}
+            <b-button variant="danger" size="sm" @click="removeFromCart(item)"
               >Remove</b-button
             >
+            <!-- <b-form-spinbutton
+              id="sb-inline"
+              v-model="fruit.quantity"
+              @input="updateCartQuantity(fruit)"
+              inline
+              min="1"
+              max="100"
+            ></b-form-spinbutton> -->
           </li>
         </ul>
         <b-button @click="checkoutFn()">Check Out</b-button>
@@ -158,7 +124,7 @@ export default {
           ],
           price: 300,
           isAddedToCart: false,
-          quantity: 10,
+          quantity: 1,
         },
         {
           id: "2",
@@ -171,7 +137,7 @@ export default {
           ],
           price: 80,
           isAddedToCart: false,
-          quantity: 20,
+          quantity: 1,
         },
         {
           id: "3",
@@ -184,7 +150,7 @@ export default {
           ],
           price: 250,
           isAddedToCart: false,
-          quantity: 15,
+          quantity: 1,
         },
         {
           id: "4",
@@ -197,7 +163,7 @@ export default {
           ],
           price: 280,
           isAddedToCart: false,
-          quantity: 12,
+          quantity: 1,
         },
         {
           id: "5",
@@ -211,7 +177,7 @@ export default {
           ],
           price: 350,
           isAddedToCart: false,
-          quantity: 8,
+          quantity: 1,
         },
         {
           id: "6",
@@ -224,7 +190,7 @@ export default {
           ],
           price: 400,
           isAddedToCart: false,
-          quantity: 5,
+          quantity: 1,
         },
       ],
     };
@@ -250,6 +216,7 @@ export default {
     },
 
     addToCart(fruit) {
+      fruit.quantity = 1;
       this.cartItems.push(fruit);
       alert(`${fruit.name} added to the cart!`);
     },
@@ -263,6 +230,12 @@ export default {
     removeFromCart(fruit) {
       this.cartItems.splice(this.cartItems.indexOf(fruit), 1);
       alert(`${fruit.name} removed from the cart!`);
+    },
+    updateCartQuantity(fruit) {
+      const cartItem = this.cartItems.find((item) => item.id === fruit.id);
+      if (cartItem) {
+        cartItem.quantity = fruit.quantity; // Update the quantity in cart
+      }
     },
   },
 };
