@@ -7,22 +7,26 @@
           v-for="(item, index) in cartItems"
           :key="index"
         >
-          <div>
-            <b-button variant="danger" size="sm" @click="removeFromCart(index)"
-              >-</b-button
-            >
-            {{ item.name }}
+          <div class="d-flex align-items-center">
+            <b-icon
+              @click="removeFromCart(index)"
+              variant="danger"
+              icon="trash"
+              class="mr-2"
+            ></b-icon>
+
+            {{ item.name }} (₹{{ item.price }} per kg x {{ item.quantity }})
           </div>
-          <div>₹{{ item.price }}</div>
+          <div>₹{{ item.price * item.quantity }}</div>
         </div>
         <hr />
         <div class="d-flex justify-content-between my-4">
           <div>Total Price</div>
-          <dicv
-            ><strong>Rs. {{ totalPrice }}</strong></dicv
-          >
+          <div>
+            <strong>₹{{ totalPrice }}</strong>
+          </div>
         </div>
-        <b-button block variant="success" @click="payNow()">Pay Now</b-button>
+        <b-button block variant="success" @click="sendWhatsApp">Pay Now</b-button>
       </div>
       <div v-else>
         <p>Your cart is empty.</p>
@@ -42,14 +46,26 @@ export default {
     };
   },
   methods: {
+    sendWhatsApp() {
+        const upiId = 'krrohit6@ybl';
+        const totalPrice = this.totalPrice;
+        const message = `Total Price: ₹${totalPrice}\nPlease make your payment using the following UPI ID: ${upiId}`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      },
     payNow() {
-      alert("HIP HIP HUrray");
+      alert("Payment Successful!");
+    },
+    removeFromCart(index) {
+      this.cartItems.splice(index, 1);
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
     },
   },
   computed: {
     totalPrice() {
       return this.cartItems.reduce(
-        (accumulator, current) => accumulator + current.price,
+        (accumulator, current) =>
+          accumulator + current.price * current.quantity,
         0
       );
     },

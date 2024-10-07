@@ -15,11 +15,11 @@
       <h2 class="my-4">Fruits Shopping List</h2>
       <b-row>
         <b-col
-          v-for="(fruit, index) in fruitsList"
-          :key="index"
+          v-for="fruit in fruitsList"
+          :key="fruit.id"
           cols="12"
           md="6"
-          lg="4"
+          lg="3"
           class="mb-4"
         >
           <b-card no-body style="height: 100%">
@@ -48,24 +48,13 @@
                     v-if="checkIfAvailableOnCart(fruit)"
                     variant="danger"
                     @click="removeFromCart(fruit)"
-                    >Remove from Cart</b-button
                   >
-                  <b-button v-else variant="primary" @click="addToCart(fruit)"
-                    >Add to Cart</b-button
-                  >
-                  <div v-if="checkIfAvailableOnCart(fruit)">
-                    <label for="sb-inline">Qty.</label>
-                    <b-form-spinbutton
-                      id="sb-inline"
-                      v-model="fruit.quantity"
-                      @input="updateCartQuantity(fruit)"
-                      inline
-                      min="1"
-                      max="100"
-                    ></b-form-spinbutton>
-                  </div>
+                    Remove from Cart
+                  </b-button>
+                  <b-button v-else variant="primary" @click="addToCart(fruit)">
+                    Add to Cart
+                  </b-button>
                 </div>
-                <!-- Spin Button to select quantity if item is in cart -->
               </div>
             </div>
           </b-card>
@@ -76,23 +65,39 @@
     <!-- Cart Modal -->
     <b-modal v-model="cartModal" title="Your Cart" hide-footer>
       <div v-if="cartItems.length > 0">
-        <ul>
-          <li v-for="(item, index) in cartItems" :key="index">
-            {{ item.name }} - ₹{{ item.price }} per kg - Qty:
-            {{ item.quantity }}
-            <b-button variant="danger" size="sm" @click="removeFromCart(item)"
-              >Remove</b-button
+        <b-card v-for="(item, index) in cartItems" :key="index" class="mb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <!-- Item name and price -->
+            <div>
+              <strong>{{ item.name }}</strong> - ₹{{ item.price }} per kg
+            </div>
+
+            <!-- Quantity control -->
+            <div class="d-flex align-items-center">
+              <label for="sb-inline" class="mr-2">Qty:</label>
+              <b-form-spinbutton
+                id="sb-inline"
+                v-model="item.quantity"
+                @input="updateCartQuantity(item)"
+                inline
+                min="1"
+                max="100"
+                size="sm"
+              ></b-form-spinbutton>
+            </div>
+
+            <!-- Remove button -->
+            <b-button
+              variant="danger"
+              size="sm"
+              @click="removeFromCart(item)"
+              class="ml-2"
             >
-            <!-- <b-form-spinbutton
-              id="sb-inline"
-              v-model="fruit.quantity"
-              @input="updateCartQuantity(fruit)"
-              inline
-              min="1"
-              max="100"
-            ></b-form-spinbutton> -->
-          </li>
-        </ul>
+              Remove
+            </b-button>
+          </div>
+        </b-card>
+
         <b-button @click="checkoutFn()">Check Out</b-button>
       </div>
       <div v-else>
@@ -119,8 +124,6 @@ export default {
           description: "A sweet, crunchy fruit that is good for health.",
           images: [
             "https://www.mashed.com/img/gallery/popular-types-of-apples-and-what-theyre-used-for/l-intro-1634566536.jpg",
-            "https://www.mashed.com/img/gallery/popular-types-of-apples-and-what-theyre-used-for/l-intro-1634566536.jpg",
-            "https://www.mashed.com/img/gallery/popular-types-of-apples-and-what-theyre-used-for/l-intro-1634566536.jpg",
           ],
           price: 300,
           isAddedToCart: false,
@@ -132,8 +135,6 @@ export default {
           description: "A soft, sweet fruit rich in potassium.",
           images: [
             "https://www.popoptiq.com/wp-content/uploads/2019/01/4-28-1-1.jpg",
-            "https://www.collinsdictionary.com/images/full/banana_64728013.jpg",
-            "https://www.eatthis.com/wp-content/uploads/sites/4/2020/08/bunch-of-bananas.jpg",
           ],
           price: 80,
           isAddedToCart: false,
@@ -145,8 +146,6 @@ export default {
           description: "A citrus fruit that is juicy and rich in Vitamin C.",
           images: [
             "https://insanelygoodrecipes.com/wp-content/uploads/2023/01/Fresh-Organic-Tangerine-Oranges-with-Leaves.jpg",
-            "https://static.libertyprim.com/files/familles/orange-large.jpg?1569271834",
-            "https://i.ndtvimg.com/mt/cooks/2014-11/orange.jpg",
           ],
           price: 250,
           isAddedToCart: false,
@@ -156,11 +155,7 @@ export default {
           id: "4",
           name: "Grapes",
           description: "A small, juicy fruit available in different colors.",
-          images: [
-            "https://images6.alphacoders.com/368/368747.jpg",
-            "https://cdn.britannica.com/95/7595-050-F5BC3C38/Bunch-of-red-grapes.jpg",
-            "https://www.jiomart.com/images/product/600x600/590000008/super-grapes-black-seedless-500-g-product-images-o590000008-p590000008-0-202207271536.jpg",
-          ],
+          images: ["https://images6.alphacoders.com/368/368747.jpg"],
           price: 280,
           isAddedToCart: false,
           quantity: 1,
@@ -172,8 +167,6 @@ export default {
             "A tropical fruit that is sweet and juicy, often called the king of fruits.",
           images: [
             "https://www.tastingtable.com/img/gallery/how-to-tell-if-a-mango-has-gone-bad/l-intro-1654872594.jpg",
-            "https://cdn.britannica.com/82/170682-050-DC17EB8D/Ripe-mango-fruit.jpg",
-            "https://i.ndtvimg.com/mt/cooks/2014-11/mango.jpg",
           ],
           price: 350,
           isAddedToCart: false,
@@ -185,8 +178,6 @@ export default {
           description: "A tropical fruit that is juicy and refreshing.",
           images: [
             "https://static.toiimg.com/photo/msid-69913666/69913666.jpg?1369636",
-            "https://cdn.britannica.com/47/75947-050-9057DC09/Lychee-fruit.jpg",
-            "https://i.ndtvimg.com/mt/cooks/2014-11/litchi.jpg",
           ],
           price: 400,
           isAddedToCart: false,
@@ -201,24 +192,15 @@ export default {
     },
   },
   mounted() {
-    let localSavedCartItems = JSON.parse(localStorage.getItem("cartItems")); // retrieve data
-    this.cartItems = localSavedCartItems ? localSavedCartItems : []; // assign retirived data
+    const localSavedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+    this.cartItems = localSavedCartItems ? localSavedCartItems : [];
   },
   methods: {
     checkIfAvailableOnCart(fruit) {
-      const hasFruit = this.cartItems.find((cart) => {
-        return cart.id == fruit.id;
-      });
-      return hasFruit ? true : false;
+      return this.cartItems.some((cart) => cart.id === fruit.id);
     },
     checkoutFn() {
       this.$router.push("/checkout");
-    },
-
-    addToCart(fruit) {
-      fruit.quantity = 1;
-      this.cartItems.push(fruit);
-      alert(`${fruit.name} added to the cart!`);
     },
     showCartModal() {
       this.cartModal = true;
@@ -227,14 +209,31 @@ export default {
       this.currentSelectedFruit = fruit;
       this.cartModalDetails = true;
     },
+    addToCart(fruit) {
+      fruit.quantity = 1;
+      this.cartItems.push(fruit);
+      this.$bvToast.toast(`${fruit.name} added to the cart!`, {
+        title: "Item Added",
+        variant: "success",
+        autoHideDelay: 3000, // Auto hide after 3 seconds
+        solid: true,
+        position: "bottom-center",
+      });
+    },
     removeFromCart(fruit) {
-      this.cartItems.splice(this.cartItems.indexOf(fruit), 1);
-      alert(`${fruit.name} removed from the cart!`);
+      this.cartItems = this.cartItems.filter((item) => item.id !== fruit.id);
+      this.$bvToast.toast(`${fruit.name} removed form the cart!`, {
+        title: "Item Removed",
+        variant: "danger",
+        autoHideDelay: 3000, // Auto hide after 3 seconds
+        solid: true,
+      });
     },
     updateCartQuantity(fruit) {
       const cartItem = this.cartItems.find((item) => item.id === fruit.id);
       if (cartItem) {
-        cartItem.quantity = fruit.quantity; // Update the quantity in cart
+        cartItem.quantity = fruit.quantity;
+        localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
       }
     },
   },
